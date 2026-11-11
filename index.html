@@ -1,207 +1,136 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Noé Kamba Katanu · Cybersécurité</title>
-<meta name="description" content="Portfolio de Noé Kamba Katanu, étudiant en master réseaux et cybersécurité à l’UNIKIN : SecDash, détection d’intrusion, IA et cybersécurité.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-:root{
-  --paper:#F1F4F2; --ink:#12222B; --muted:#55656D; --rule:#C9D3D0;
-  --cobalt:#1F4FD8; --amber:#E3A21A; --panel:#0F2530; --panel-ink:#CFE0E6;
-  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
-  --body:"Instrument Sans","Segoe UI",system-ui,sans-serif;
-  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.65 var(--body)}
-a{color:var(--cobalt);text-underline-offset:3px}
-a:focus-visible,.btn:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
-.wrap{max-width:1080px;margin:0 auto;padding:0 1.5rem}
-h1,h2,h3{font-family:var(--display);line-height:1.1;letter-spacing:-.02em;margin:0}
+<div align="center">
 
-header.top{display:flex;flex-wrap:wrap;gap:.75rem 2rem;justify-content:space-between;align-items:center;padding:1.5rem 0}
-.brand{font-family:var(--display);font-weight:700;font-size:1.15rem;color:var(--ink);text-decoration:none}
-nav a{margin-left:1.5rem;color:var(--ink);text-decoration:none;font-weight:500}
-nav a:hover{color:var(--cobalt)}
+# SecDash
 
-.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center;padding:3rem 0 4.5rem}
-.hero h1{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:700}
-.lead{font-size:1.2rem;color:var(--muted);max-width:34rem;margin:1.5rem 0 2rem}
-.btn{display:inline-block;padding:.8rem 1.4rem;border-radius:6px;font-weight:600;text-decoration:none;margin:0 .75rem .75rem 0}
-.btn.primary{background:var(--cobalt);color:#fff}
-.btn.primary:hover{background:#1840b0}
-.btn.ghost{border:2px solid var(--ink);color:var(--ink)}
-.btn.ghost:hover{background:var(--ink);color:var(--paper)}
+**Voir les attaques par force brute avant qu’elles n’aboutissent.**
 
-.log{margin:0;background:var(--panel);color:var(--panel-ink);border-radius:8px;overflow:hidden}
-.log figcaption{padding:.7rem 1rem;font-size:.85rem;color:#8FA9B4;border-bottom:1px solid #223C49}
-.log ol{list-style:none;margin:0;padding:.5rem 0;font:400 .82rem/1.5 var(--mono)}
-.log li{display:grid;grid-template-columns:4.4rem 6.6rem 1fr;gap:.5rem;padding:.3rem 1rem;opacity:0;animation:appear .3s forwards}
-.log li:nth-child(1){animation-delay:.2s}.log li:nth-child(2){animation-delay:.6s}
-.log li:nth-child(3){animation-delay:1s}.log li:nth-child(4){animation-delay:1.4s}
-.log li:nth-child(5){animation-delay:1.8s}.log li:nth-child(6){animation-delay:2.4s}
-.log li:nth-child(7){animation-delay:3.2s}
-.log .fail{color:#F2A7A0}
-.log .alert{background:#3A2E10;border-left:3px solid var(--amber);color:#FFD98A;grid-template-columns:4.4rem 1fr;padding-left:calc(1rem - 3px)}
-.log .ok{color:#9FDDB8}
-@keyframes appear{to{opacity:1}}
-@media (prefers-reduced-motion:reduce){.log li{opacity:1;animation:none}html{scroll-behavior:auto}}
+Un tableau de bord de sécurité qui transforme les journaux de connexion en alertes claires.
 
-section{padding:3.5rem 0;border-top:1px solid var(--rule)}
-section>.wrap>h2{font-size:clamp(1.7rem,3.2vw,2.3rem);margin-bottom:2rem}
+![PHP](https://img.shields.io/badge/PHP-8-777BB4?logo=php&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-MariaDB-4479A1?logo=mysql&logoColor=white)
+![Apache](https://img.shields.io/badge/Apache-XAMPP-D22128?logo=apache&logoColor=white)
+![Chart.js](https://img.shields.io/badge/Chart.js-4-FF6384?logo=chartdotjs&logoColor=white)
 
-.featured{display:grid;grid-template-columns:1.2fr .8fr;gap:3rem}
-.featured h3{font-size:1.6rem;margin-bottom:.25rem}
-.featured .tag{color:var(--muted);margin:0 0 1.25rem}
-.featured h4{font:600 1rem var(--body);margin:1.5rem 0 .25rem}
-.featured p{margin:0 0 .5rem;max-width:38rem}
-dl.facts{margin:0}
-dl.facts dt{font-weight:600;margin-top:1.25rem}
-dl.facts dd{margin:.25rem 0 0;color:var(--muted)}
-dl.facts dt:first-child{margin-top:0}
-.shots{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2.5rem}
-.shot{margin:0}
-.shot .ph{aspect-ratio:16/10;border:2px dashed var(--rule);border-radius:6px;display:grid;place-items:center;text-align:center;padding:1rem;color:var(--muted);font-size:.9rem}
-.shot img{width:100%;border-radius:6px;border:1px solid var(--rule)}
-.shot figcaption{font-size:.9rem;color:var(--muted);margin-top:.5rem}
+<br>
 
-.works{margin-top:3rem}
-.work{display:grid;grid-template-columns:14rem 1fr;gap:2rem;padding:1.5rem 0;border-top:1px solid var(--rule)}
-.work h3{font-size:1.15rem}
-.work .state{color:var(--muted);font-size:.95rem;margin-top:.25rem}
-.work p{margin:0;max-width:40rem}
+<img src="docs/img/dashboard.png" alt="Tableau de bord SecDash" width="860">
 
-.skills{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem 3rem}
-.skills h3{font-size:1.1rem;margin-bottom:.35rem}
-.skills p{margin:0;color:var(--muted)}
-
-.about{display:grid;grid-template-columns:12rem 1fr;gap:3rem;align-items:start}
-.avatar{width:12rem;aspect-ratio:1;border-radius:50%;background:var(--cobalt);color:#fff;display:grid;place-items:center;font:700 3rem var(--display);overflow:hidden}
-.avatar img{width:100%;height:100%;object-fit:cover}
-.about p{margin:0 0 1rem;max-width:40rem}
-
-ul.contact{list-style:none;margin:0;padding:0;font-size:1.15rem}
-ul.contact li{padding:.4rem 0}
-footer{padding:2rem 0 3rem;border-top:1px solid var(--rule);color:var(--muted);font-size:.9rem}
-
-@media (max-width:820px){
-  .hero,.featured,.about,.work,.skills{grid-template-columns:1fr}
-  .hero{gap:2rem;padding-top:1.5rem}
-  .shots{grid-template-columns:1fr}
-  .work{gap:.5rem}
-  nav a{margin:0 1.25rem 0 0}
-}
-</style>
-</head>
-<body>
-<div class="wrap">
-  <header class="top">
-    <a class="brand" href="#">Noé Kamba Katanu</a>
-    <nav aria-label="Navigation principale">
-      <a href="#projets">Projets</a><a href="#competences">Compétences</a><a href="#apropos">À propos</a><a href="#contact">Contact</a>
-    </nav>
-  </header>
-
-  <div class="hero">
-    <div>
-      <h1>Des outils qui repèrent les connexions suspectes avant qu’elles réussissent.</h1>
-      <p class="lead">Étudiant en master réseaux et cybersécurité à l’Université de Kinshasa. Je construis des outils de détection et j’étudie ce que l’intelligence artificielle change pour la sécurité.</p>
-      <a class="btn primary" href="#projets">Voir le projet SecDash</a>
-      <a class="btn ghost" href="#contact">Me contacter</a>
-    </div>
-    <figure class="log">
-      <figcaption>Extrait du journal de SecDash (données de test)</figcaption>
-      <ol>
-        <li class="fail"><span>09:41:02</span><span>login_failed</span><span>root · 203.0.113.45</span></li>
-        <li class="fail"><span>09:41:09</span><span>login_failed</span><span>admin · 203.0.113.45</span></li>
-        <li class="fail"><span>09:41:15</span><span>login_failed</span><span>test · 203.0.113.45</span></li>
-        <li class="fail"><span>09:41:22</span><span>login_failed</span><span>root · 203.0.113.45</span></li>
-        <li class="fail"><span>09:41:30</span><span>login_failed</span><span>oracle · 203.0.113.45</span></li>
-        <li class="alert"><span>09:41:30</span><span>Alerte : 5 échecs en 10 minutes depuis 203.0.113.45</span></li>
-        <li class="ok"><span>09:42:11</span><span>login_success</span><span>noe · 198.51.100.7</span></li>
-      </ol>
-    </figure>
-  </div>
 </div>
 
-<section id="projets">
-  <div class="wrap">
-    <h2>Projets</h2>
+---
 
-    <article class="featured">
-      <div>
-        <h3>SecDash</h3>
-        <p class="tag">Tableau de bord de sécurité · projet personnel</p>
-        <h4>Le problème</h4>
-        <p>Les tentatives répétées de connexion sont le premier signe d’une attaque par force brute, mais elles passent inaperçues quand personne ne lit les journaux.</p>
-        <h4>Ce que fait SecDash</h4>
-        <p>Il collecte les événements de connexion, repère les adresses IP qui échouent trop souvent, crée des alertes classées par gravité et permet à un administrateur de les traiter ou de bloquer une IP. Une API protégée par clé reçoit les journaux d’autres machines.</p>
-        <h4>Mesures de sécurité</h4>
-        <p>Mots de passe hachés, requêtes préparées, jetons CSRF, session régénérée à la connexion, verrouillage après 5 échecs, expiration après inactivité, en-têtes de sécurité et compte de base de données aux droits limités.</p>
-        <p><a href="https://github.com/NOE-KATANU167/secdash">Code source sur GitHub</a></p>
-      </div>
-      <dl class="facts">
-        <dt>Technologies</dt><dd>PHP 8, MySQL, Apache (XAMPP), Chart.js, VS Code</dd>
-        <dt>Règle de détection</dt><dd>5 échecs en 10 minutes depuis la même IP déclenchent une alerte.</dd>
-        <dt>Limites connues</dt><dd>Pas encore de HTTPS, de double authentification ni de limitation de débit sur l’API. Ce sont les prochaines étapes.</dd>
-      </dl>
-    </article>
+## Le constat
 
-    <div class="works">
-      <article class="work">
-        <div><h3>Mémoire de licence</h3><p class="state">Terminé</p></div>
-        <p>Un système de détection d’intrusion basé sur Snort, couplé à un crypto-système. Étude de cas : la Direction provinciale des impôts du Kasaï oriental.</p>
-      </article>
-      <article class="work">
-        <div><h3>Mémoire de master</h3><p class="state">En cours</p></div>
-        <p>Les risques que l’intelligence artificielle fait peser sur la cybersécurité, avec une piste sur le contrôle des agents d’IA autonomes dans les infrastructures critiques.</p>
-      </article>
-    </div>
-  </div>
-</section>
+Une attaque par force brute commence presque toujours par une série d’échecs de connexion. Ces traces existent dans les journaux, mais personne ne les lit en temps réel : l’attaque passe inaperçue jusqu’à ce qu’elle réussisse.
 
-<section id="competences">
-  <div class="wrap">
-    <h2>Compétences</h2>
-    <div class="skills">
-      <div><h3>Détection d’intrusion</h3><p>Snort, analyse de journaux, règles d’alerte</p></div>
-      <div><h3>Développement web</h3><p>PHP, JavaScript, HTML/CSS, requêtes préparées</p></div>
-      <div><h3>Bases de données</h3><p>MySQL, SQL Server, PostgreSQL</p></div>
-      <div><h3>Systèmes et réseaux</h3><p>Linux (Ubuntu), Windows, VirtualBox, Apache</p></div>
-      <div><h3>Électronique</h3><p>Arduino, premiers pas vers l’IoT appliqué à la sécurité</p></div>
-      <div><h3>En apprentissage</h3><p>Tests d’intrusion, renseignement sur les cybermenaces</p></div>
-    </div>
-  </div>
-</section>
+SecDash rend ces signaux visibles. Chaque événement de connexion est enregistré, analysé, et les comportements suspects remontent sous forme d’alertes qu’un administrateur peut traiter en quelques clics.
 
-<section id="apropos">
-  <div class="wrap about">
-    <div class="avatar" aria-hidden="true">NK</div>
-    <div>
-      <h2 style="margin-bottom:1.25rem">À propos</h2>
-      <p>Je m’appelle Noé Kamba Katanu. Originaire du Grand Kasaï, je vis à Kinshasa, où j’étudie le master en réseaux et cybersécurité à l’Université de Kinshasa.</p>
-      <p>Ce qui m’intéresse : la sécurité défensive, la détection des attaques et l’impact de l’intelligence artificielle sur la sécurité. Je crois que l’innovation africaine passe par des outils conçus, testés et expliqués ici.</p>
-    </div>
-  </div>
-</section>
+## Comment ça marche
 
-<section id="contact">
-  <div class="wrap">
-    <h2>Contact</h2>
-    <ul class="contact">
-      <li>GitHub : <a href="https://github.com/NOE-KATANU167">github.com/NOE-KATANU167</a></li>
-      <li>LinkedIn : <a href="https://www.linkedin.com/in/no%C3%A9-katanu-80147b343">linkedin.com/in/noé-katanu-80147b343</a></li>
-    </ul>
-  </div>
-</section>
+| 1. Collecte | 2. Détection | 3. Alerte | 4. Action |
+|---|---|---|---|
+| Chaque connexion réussie, échouée ou refusée est journalisée avec l’IP, l’utilisateur et l’horodatage. | Cinq échecs en dix minutes depuis une même adresse déclenchent la règle. | Une alerte est créée, de gravité moyenne, puis haute à partir de dix échecs. | L’administrateur la classe (nouvelle, en cours, résolue) ou bloque l’adresse. |
 
-<footer>
-  <div class="wrap">© 2026 Noé Kamba Katanu</div>
-</footer>
-</body>
-</html>
+Les journaux peuvent venir de l’application elle-même **ou d’autres machines**, grâce à une API d’ingestion protégée par une clé secrète.
+
+## Aperçu
+
+<div align="center">
+
+| Connexion | Alertes |
+|:---:|:---:|
+| <img src="docs/img/login.png" alt="Page de connexion" width="420"> | <img src="docs/img/alertes.png" alt="Alertes et blocage d’IP" width="420"> |
+
+</div>
+
+## La sécurité dès la conception
+
+SecDash est lui-même un outil de sécurité : il doit résister aux attaques qu’il surveille.
+
+| Menace | Réponse dans SecDash |
+|---|---|
+| Force brute sur la connexion | Verrouillage du compte 15 minutes après 5 échecs, alerte automatique |
+| Injection SQL | Requêtes préparées PDO sur tous les accès à la base |
+| CSRF | Jeton unique vérifié sur chaque formulaire |
+| Vol ou fixation de session | Session régénérée à la connexion, cookie `HttpOnly` et `SameSite=Strict`, expiration après 30 minutes d’inactivité |
+| XSS | Sortie HTML échappée systématiquement, en-tête `Content-Security-Policy` strict |
+| Fuite d’identifiants | Mots de passe hachés (`password_hash`), message d’erreur volontairement vague, compte MySQL aux droits limités |
+| Exposition de fichiers sensibles | Seul le dossier `public/` est servi ; configuration et secrets restent hors de portée du navigateur |
+| Abus de l’API | Clé comparée en temps constant (`hash_equals`), validation stricte des champs, corps limité à 10 Ko |
+
+## Architecture
+
+```
+secdash/
+├── config/          connexion à la base, secrets (non publiés)
+├── includes/        authentification, CSRF, détection
+├── public/          seul dossier exposé au web
+│   ├── api/         API d’ingestion des journaux
+│   └── assets/      CSS et JavaScript
+├── sql/schema.sql   structure de la base
+└── tools/           création du premier administrateur
+```
+
+Aucun framework : chaque mécanisme de sécurité est écrit explicitement dans le code, ce qui le rend lisible et vérifiable.
+
+## Limites actuelles et prochaines étapes
+
+SecDash est un projet en cours de construction. Ce qui manque, et qui fait la suite de la feuille de route :
+
+| Limite | Évolution prévue |
+|---|---|
+| Pas de HTTPS | Indispensable avant tout usage hors d’un poste local |
+| Authentification par mot de passe seul | Double authentification (TOTP) pour les administrateurs |
+| Pas de limitation de débit sur l’API | Plafond de requêtes par clé |
+| Le blocage d’IP agit sur la page de connexion | Blocage au niveau du pare-feu |
+| Consultation limitée aux dernières alertes | Page de journaux avec filtres, déblocage d’IP, export CSV |
+
+<details>
+<summary><strong>Lancer le projet en local (XAMPP, Windows)</strong></summary>
+
+<br>
+
+1. Placer le projet dans un dossier, par exemple `D:\secdash`, et exposer uniquement `public/` dans `httpd.conf` :
+
+   ```apache
+   Alias /secdash "D:/secdash/public"
+   <Directory "D:/secdash/public">
+       Require all granted
+   </Directory>
+   ```
+
+2. Importer la base avec `mysql -u root < sql/schema.sql` (après avoir remplacé le mot de passe provisoire de `secdash_user` dans le fichier).
+3. Copier `config/db.example.php` vers `config/db.php` et `config/secrets.example.php` vers `config/secrets.php`, puis y renseigner le mot de passe de la base et une clé générée avec `php -r "echo bin2hex(random_bytes(32));"`.
+4. Créer le premier administrateur : `php tools/create_admin.php`.
+5. Ouvrir `http://localhost/secdash/login.php`.
+
+**Tester la détection** en envoyant six échecs à l’API depuis une adresse fictive :
+
+```powershell
+$body = @{ event_type="login_failed"; username="root"; ip_address="203.0.113.45"; user_agent="test" } | ConvertTo-Json
+1..6 | ForEach-Object {
+  Invoke-RestMethod -Uri "http://localhost/secdash/api/ingest.php" -Method Post `
+    -Headers @{ "X-API-Key" = "VOTRE_CLE" } -ContentType "application/json" -Body $body
+}
+```
+
+Une alerte apparaît alors dans le tableau de bord pour `203.0.113.45`, une adresse réservée à la documentation.
+
+</details>
+
+---
+
+<div align="center">
+
+## À propos de l’auteur
+
+<img src="docs/img/auteur.jpeg" alt="Noé Kamba Katanu" width="160">
+
+### Noé Kamba Katanu
+
+Étudiant en master réseaux et cybersécurité à l’Université de Kinshasa (UNIKIN).<br>
+Détection des attaques, sécurité défensive, et impact de l’intelligence artificielle sur la cybersécurité.
+
+[GitHub](https://github.com/NOE-KATANU167) · [LinkedIn](https://www.linkedin.com/in/no%C3%A9-katanu-80147b343)
+
+</div>
